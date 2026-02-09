@@ -73,14 +73,17 @@ export default function ResourcesSection() {
                     <li>• Use your bank's official mobile app</li>
                   </ul>
                 </div>
-                <div className="p-3 bg-destructive/10 rounded-lg border border-destructive/20">
-                  <p className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>
-                      <strong>Never:</strong> Call numbers from emails, SMS, or search results. 
-                      Scammers create fake customer service numbers.
-                    </span>
+                <div className="p-3 bg-destructive/10 rounded-lg">
+                  <p className="font-semibold text-destructive mb-1 flex items-center gap-2">
+                    <AlertTriangle className="h-4 w-4" />
+                    Never Trust:
                   </p>
+                  <ul className="space-y-1 ml-4">
+                    <li>• Numbers from emails or text messages</li>
+                    <li>• Numbers provided by callers claiming to be from your bank</li>
+                    <li>• Links in emails or SMS messages</li>
+                    <li>• Social media messages</li>
+                  </ul>
                 </div>
               </div>
             </AccordionContent>
@@ -95,34 +98,43 @@ export default function ResourcesSection() {
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  Cybercrime reporting procedures vary by country and region. To find the correct 
-                  authorities for your location:
-                </p>
-                <ul className="space-y-2 ml-4">
-                  <li>
-                    • <strong>Search for:</strong> "cybercrime reporting [your country]" or 
-                    "report online fraud [your country]"
-                  </li>
-                  <li>
-                    • <strong>Look for:</strong> Official government websites (.gov domains) or 
-                    law enforcement portals
-                  </li>
-                  <li>
-                    • <strong>Contact:</strong> Your local police station for guidance on filing 
-                    cybercrime complaints
-                  </li>
-                  <li>
-                    • <strong>Check:</strong> Your bank's website for fraud reporting procedures 
-                    specific to your region
-                  </li>
-                </ul>
-                <div className="p-3 bg-muted/50 rounded-lg border border-border mt-3">
-                  <p className="text-xs">
-                    <strong>Note:</strong> This website is an educational resource and not affiliated 
-                    with any law enforcement agency. Always report crimes to official authorities in 
-                    your jurisdiction.
+                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <span className="font-semibold text-foreground">Cybercrime Helpline: 1930</span>
+                  </div>
+                  <p>
+                    For immediate assistance with cybercrime and financial fraud, call the helpline <strong>1930</strong>. 
+                    This is the official number for reporting cybercrimes and getting guidance from authorities.
                   </p>
+                </div>
+                
+                <div>
+                  <p className="font-semibold text-foreground mb-2">How to Find Official Channels:</p>
+                  <ul className="space-y-2 ml-4">
+                    <li>
+                      <strong>Cybercrime Portal:</strong> Search for your country or region's official cybercrime reporting website 
+                      (look for .gov or official government domains)
+                    </li>
+                    <li>
+                      <strong>Local Police:</strong> Visit your nearest police station in person to file an FIR (First Information Report)
+                    </li>
+                    <li>
+                      <strong>Bank Fraud Department:</strong> Contact through official channels listed on your bank's website
+                    </li>
+                    <li>
+                      <strong>Consumer Protection:</strong> Look for official consumer protection agencies in your region
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-muted rounded-lg">
+                  <p className="font-semibold text-foreground mb-1">Verification Tips:</p>
+                  <ul className="space-y-1 ml-4">
+                    <li>• Always verify website URLs (look for official .gov domains)</li>
+                    <li>• Cross-check phone numbers on multiple official sources</li>
+                    <li>• Be wary of websites that ask for payment to file complaints</li>
+                    <li>• Official government services are typically free</li>
+                  </ul>
                 </div>
               </div>
             </AccordionContent>

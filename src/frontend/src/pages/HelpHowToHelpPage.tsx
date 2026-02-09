@@ -182,30 +182,48 @@ export default function HelpHowToHelpPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Checkbox id="cybercrime-portal" className="mt-1" />
-                  <label htmlFor="cybercrime-portal" className="text-sm cursor-pointer">
-                    <strong>File a complaint</strong> with your local cybercrime reporting portal
-                  </label>
+              <div className="space-y-4">
+                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <span className="font-semibold text-foreground">Cybercrime Helpline: 1930</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Call the cybercrime helpline <strong>1930</strong> to report financial fraud and get immediate assistance from authorities.
+                  </p>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Checkbox id="police-report" className="mt-1" />
-                  <label htmlFor="police-report" className="text-sm cursor-pointer">
-                    <strong>File an FIR</strong> at your local police station with all evidence
-                  </label>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Checkbox id="bank-complaint" className="mt-1" />
-                  <label htmlFor="bank-complaint" className="text-sm cursor-pointer">
-                    <strong>Submit written complaint</strong> to your bank's fraud department
-                  </label>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Checkbox id="report-platform" className="mt-1" />
-                  <label htmlFor="report-platform" className="text-sm cursor-pointer">
-                    <strong>Report to the platform</strong> where the scam occurred (social media, marketplace, etc.)
-                  </label>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <Checkbox id="call-helpline" className="mt-1" />
+                    <label htmlFor="call-helpline" className="text-sm cursor-pointer">
+                      <strong>Call 1930</strong> for immediate cybercrime reporting and guidance
+                    </label>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox id="cybercrime-portal" className="mt-1" />
+                    <label htmlFor="cybercrime-portal" className="text-sm cursor-pointer">
+                      <strong>File a complaint</strong> with your local cybercrime reporting portal
+                    </label>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox id="police-report" className="mt-1" />
+                    <label htmlFor="police-report" className="text-sm cursor-pointer">
+                      <strong>File an FIR</strong> at your local police station with all evidence
+                    </label>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox id="bank-complaint" className="mt-1" />
+                    <label htmlFor="bank-complaint" className="text-sm cursor-pointer">
+                      <strong>Submit written complaint</strong> to your bank's fraud department
+                    </label>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Checkbox id="report-platform" className="mt-1" />
+                    <label htmlFor="report-platform" className="text-sm cursor-pointer">
+                      <strong>Report to the platform</strong> where the scam occurred (social media, marketplace, etc.)
+                    </label>
+                  </div>
                 </div>
               </div>
             </CardContent>
