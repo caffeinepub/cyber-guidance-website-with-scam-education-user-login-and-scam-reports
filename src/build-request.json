@@ -1,0 +1,145 @@
+{
+  "kind": "build_request",
+  "title": "Cyber Guidance Website with Scam Education, User Login, and Scam Reports",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a multi-page cyber guidance website with the following user-facing sections: (1) Home page explaining the site purpose, (2) Scam Guidance section that educates users about common cyber scams and bank-transaction fraud, (3) \"What to do / How to help\" guidance section with clear steps for victims and helpers, and (4) a Scam Reports section where users can submit and view scam incidents (what type of scam happened).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Make me a website which will tell us about any type of cyber scam or bank transaction... Make a cyber guidance like website... and add pages in the website like home page... and list of scams which type of scam has happened with you."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigation exists to access Home, Guidance, Help/Reporting, and Scam Reports sections.",
+        "All user-facing text is in English.",
+        "Scam Guidance includes at least: phishing, OTP/UPI fraud, fake customer care, card skimming, investment/crypto scams, job/loan scams, and social media impersonation.",
+        "Help/Reporting page includes step-by-step actions (e.g., secure accounts, preserve evidence, contact bank, report to relevant authorities) presented in a clear checklist format."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement user authentication UI with a dedicated Login/Register page and logged-in state, using the platform-supported identity mechanism, and gate scam report submission so only signed-in users can submit new reports.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "add pages in the website like home page, login or register page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A Login/Register page exists and allows the user to sign in and sign out.",
+        "When signed out, the Scam Reports submission form is disabled/hidden and a clear prompt to log in is shown.",
+        "When signed in, the user can access the scam report submission form."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create a Scam Reports feature where signed-in users can submit a scam incident including: scam type (selected from predefined categories), short title, description, approximate date, and optional loss amount; and all users can browse a list of submitted reports with basic filtering by scam type.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "list of scams which type of scam has happened with you"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submission validates required fields (scam type, title, description) and shows user-friendly errors.",
+        "After submitting a report, it appears in the list without a full page refresh.",
+        "Scam report list supports filtering by scam type.",
+        "Each report shows: scam type, title, date reported, and a short preview of description."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement backend storage and retrieval for scam reports, including associating each report with the submitting user identity and a server-side timestamp; provide APIs for creating a report and listing reports (with optional scam-type filter).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "list of scams which type of scam has happened with you"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend persists reports across sessions and can return them on reload.",
+        "Each stored report includes: unique id, author identity, createdAt timestamp, and the submitted fields.",
+        "List endpoint supports filtering by scam type (or equivalent)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a consistent, distinctive visual theme suitable for a student cyber guidance project (avoid default/unstyled look): define a cohesive color palette (not blue/purple), typography hierarchy, spacing, and components (cards, nav, forms) and apply it across all pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share consistent layout, typography, and component styling.",
+        "Theme uses a coherent palette that is not primarily blue/purple.",
+        "Forms, navigation, and lists are clearly readable and accessible (sufficient contrast, clear focus states)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add a Resources section (within the Guidance or Help page) that lists general-purpose items users can use to get help: what evidence to collect, how to contact their bank, and how to find official cybercrime reporting channels for their region (without hardcoding country-specific phone numbers unless provided by the user).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "if someone commits a crime related to scams then how can we help the people"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Resources content includes evidence checklist (screenshots, transaction IDs, chat logs, URLs, phone numbers) and safety reminders.",
+        "Copy avoids claiming to be official law enforcement and advises users to use official channels for their location.",
+        "No country-specific emergency/cybercrime numbers are included unless the user supplies them."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not edit files under frontend/src/components/ui or the immutable hook/actor files listed in SYSTEM_CONTEXT; compose them from app code instead.",
+    "No third-party authentication providers; use the platform-supported identity flow only.",
+    "No external databases or non-supported backend runtimes (e.g., Python/Node) despite the user’s original preference."
+  ],
+  "nonGoals": [
+    "Real-time chat or live incident response.",
+    "Integration with police/bank APIs, ticketing systems, SMS/email sending, or push notifications.",
+    "Automatic scam detection or AI-generated analysis of reports.",
+    "Collecting sensitive banking credentials/OTP/PIN; the UI must not ask for such secrets."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimal cyber safety emblem/logo with shield + circuit lines (cyber-logo.dim_512x512.png)",
+      "Wide hero illustration showing abstract secure banking + warning symbols in a warm non-blue palette (hero-cyber-guidance.dim_1600x900.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for user-facing text"
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Cyber Guidance Website (Frontend) with Auth UI, Scam Education, and Scam Reports",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build multi-page navigation and user-facing sections: Home, Scam Guidance, What to do/How to help, and Scam Reports (submit + browse).",
+      "acceptanceCriteria": [
+        "Navigation exists to access Home, Guidance, Help/Reporting, and Scam Reports sections.",
+        "All user-facing text is in English.",
+        "Scam Guidance includes at least: phishing, OTP/UPI fraud, fake customer care, card skimming, investment/crypto scams, job/loan scams, and social media impersonation.",
+        "Help/Reporting page includes step-by-step actions (e.g., secure accounts, preserve evidence, contact bank, report to relevant authorities) presented in a clear checklist format."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the top-level app shell with client-side routing and a consistent layout (header/nav + main + footer) that wires routes for Home, Scam Guidance, Help/How to Help, Scam Reports, and Login/Register. Ensure no page is orphaned (all routes reachable from nav)."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "create",
+          "description": "Add a reusable layout component used by all pages to enforce consistent spacing/typography and shared header/footer styling across the site."
+        },
+        {
+          "path": "frontend/src/components/navigation/TopNav.tsx",
+          "operation": "create",
+          "description": "Implement primary navigation UI with links to Home, Guidance, Help, Scam Reports, and Login/Register. Use shadcn-ui components for accessible navigation elements and responsive layout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create Home page content explaining the site purpose and safety boundaries (no OTP/PIN/credentials). Wire in the generated logo and hero illustration for the hero section (see asset wiring requirement notes)."
+        },
+        {
+          "path": "frontend/src/pages/ScamGuidancePage.tsx",
+          "operation": "create",
+          "description": "Create Scam Guidance content with educational cards/sections for: phishing, OTP/UPI fraud, fake customer care, card skimming, investment/crypto scams, job/loan scams, and social media impersonation. Use shadcn-ui Card/Accordion components to keep content scannable. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HelpHowToHelpPage.tsx",
+          "operation": "create",
+          "description": "Create the What to do / How to help page with clear step-by-step checklists for victims and helpers (account security, preserving evidence, contacting bank, reporting to official authorities). Use shadcn-ui Checkbox/List patterns for a clear checklist format. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ScamReportsPage.tsx",
+          "operation": "create",
+          "description": "Create Scam Reports page container that composes report browsing, filtering, and (when signed in) submission UI; ensure it is accessible via navigation and routing."
+        },
+        {
+          "path": "frontend/public/assets/generated/cyber-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated image asset file at this exact path and wire it into the UI (Home page header/brand area)."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-cyber-guidance.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated image asset file at this exact path and wire it into the UI (Home page hero section)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Login/Register UI using platform-supported Internet Identity, maintain logged-in state, and gate scam report submission to signed-in users.",
+      "acceptanceCriteria": [
+        "A Login/Register page exists and allows the user to sign in and sign out.",
+        "When signed out, the Scam Reports submission form is disabled/hidden and a clear prompt to log in is shown.",
+        "When signed in, the user can access the scam report submission form."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AuthPage.tsx",
+          "operation": "create",
+          "description": "Create a dedicated Login/Register page that uses the authorization component’s frontend identity flow (useInternetIdentity) to login/logout and display authenticated state. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create a hook that uses the authorization component’s required profile functions (getCallerUserProfile/saveCallerUserProfile via the actor) to load/save the current user profile and avoid profile-setup flash per guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupDialog.tsx",
+          "operation": "create",
+          "description": "Implement a first-login profile setup dialog (collect a display name only) backed by saveCallerUserProfile. Use shadcn-ui Dialog/Form components for accessible UX. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ScamReportsPage.tsx",
+          "operation": "modify",
+          "description": "Gate the report submission area: when signed out, hide/disable the form and show a clear prompt linking to the Login/Register page; when signed in, render the submission form. Use the authorization component’s identity state (useInternetIdentity) to determine sign-in. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/navigation/TopNav.tsx",
+          "operation": "modify",
+          "description": "Add login/logout affordance in the nav that uses the authorization component’s identity flow and clears cached app data on logout (via react-query queryClient.clear()) as required by the component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the AuthPage route into the router and ensure navigation includes access to it."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Enable signed-in users to submit scam reports (type, title, description, approximate date, optional loss) and allow all users to browse reports with scam-type filtering and live list updates.",
+      "acceptanceCriteria": [
+        "Submission validates required fields (scam type, title, description) and shows user-friendly errors.",
+        "After submitting a report, it appears in the list without a full page refresh.",
+        "Scam report list supports filtering by scam type.",
+        "Each report shows: scam type, title, date reported, and a short preview of description."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useScamReports.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for loading scam reports (all + filtered by type) and creating a report using the backend actor methods available in the typed interface. Ensure cache invalidation or optimistic update so new reports appear without a full page refresh."
+        },
+        {
+          "path": "frontend/src/components/scam-reports/ScamReportForm.tsx",
+          "operation": "create",
+          "description": "Build the scam report submission form with required fields (scam type, title, description), approximate date input, and optional loss amount. Use shadcn-ui Form, Input, Select, Textarea components for accessible validation messaging. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scam-reports/ScamReportList.tsx",
+          "operation": "create",
+          "description": "Implement the report list UI showing scam type, title, date reported, and a short description preview. Use shadcn-ui Card/Badge components for readable list items. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/scam-reports/ScamTypeFilter.tsx",
+          "operation": "create",
+          "description": "Add a scam-type filter control (predefined categories) that updates the list query and supports clearing back to 'all'. Use shadcn-ui Select or Tabs for filtering UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ScamReportsPage.tsx",
+          "operation": "modify",
+          "description": "Compose ScamTypeFilter + ScamReportList for all users and render ScamReportForm only when signed in (per REQ-2). Ensure post-submit updates list via query invalidation/optimistic update."
+        },
+        {
+          "path": "frontend/src/utils/format.ts",
+          "operation": "create",
+          "description": "Add small frontend utilities to format backend timestamps (bigint) into a readable English date string and to format/guard optional loss amounts for display without exposing sensitive info."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a cohesive non-blue/non-purple visual theme across pages with consistent typography, spacing, and styled components (nav, cards, forms, lists) with accessible contrast and focus states.",
+      "acceptanceCriteria": [
+        "All pages share consistent layout, typography, and component styling.",
+        "Theme uses a coherent palette that is not primarily blue/purple.",
+        "Forms, navigation, and lists are clearly readable and accessible (sufficient contrast, clear focus states)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define a distinctive warm/earthy theme (non-blue/non-purple) using Tailwind + CSS variables used by shadcn-ui tokens (background/foreground/primary/etc.), plus global typography/spacing defaults and clear focus-visible styles. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions only as needed to support the new palette/typography scale (keeping existing shadcn-ui token approach intact)."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Apply consistent container widths, spacing rhythm, and typography hierarchy (headings/body) so all pages feel unified."
+        },
+        {
+          "path": "frontend/src/components/navigation/TopNav.tsx",
+          "operation": "modify",
+          "description": "Ensure navigation styling matches the new theme (colors, active states, focus states) and remains accessible/legible."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add a Resources section within Guidance or Help that lists evidence to collect, safe bank-contact guidance, and how to find official reporting channels without hardcoded country-specific numbers.",
+      "acceptanceCriteria": [
+        "Resources content includes evidence checklist (screenshots, transaction IDs, chat logs, URLs, phone numbers) and safety reminders.",
+        "Copy avoids claiming to be official law enforcement and advises users to use official channels for their location.",
+        "No country-specific emergency/cybercrime numbers are included unless the user supplies them."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/resources/ResourcesSection.tsx",
+          "operation": "create",
+          "description": "Create a reusable Resources section component with an evidence checklist, safety reminders, and guidance to find official cybercrime reporting channels by region (no country-specific numbers). Use shadcn-ui Accordion/Card components for scannable structure. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HelpHowToHelpPage.tsx",
+          "operation": "modify",
+          "description": "Embed the ResourcesSection within the Help/How to Help page below the action checklists, ensuring content stays general and clearly non-official."
+        },
+        {
+          "path": "frontend/src/pages/ScamGuidancePage.tsx",
+          "operation": "modify",
+          "description": "Optionally cross-link to the ResourcesSection/Help page from relevant scam guidance content to improve discoverability, without adding new top-level routes."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, Guidance, Help, Reports, Auth) and wrapping with ThemeProvider and Toaster for notifications.",
+  "frontend/src/components/layout/SiteLayout.tsx": "Root layout component that renders TopNav, main content outlet, and footer with attribution and disclaimer text.",
+  "frontend/src/components/navigation/TopNav.tsx": "Responsive navigation header with logo, route links, login/logout button, user profile display, and mobile menu toggle.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with hero section featuring generated assets, feature cards explaining site sections, and safety reminders about not sharing sensitive information.",
+  "frontend/src/pages/ScamGuidancePage.tsx": "Educational page displaying detailed information about 8 common scam types (phishing, OTP/UPI fraud, fake support, card skimming, investment, job/loan, romance, identity theft) with expandable details and prevention tips.",
+  "frontend/src/pages/HelpHowToHelpPage.tsx": "Step-by-step guidance page with actionable checklists for scam victims covering account security, bank contact, evidence preservation, authority reporting, and monitoring, plus ResourcesSection and helper guidance.",
+  "frontend/src/pages/ScamReportsPage.tsx": "Community reports page with two-column layout showing submission form (gated to authenticated users) and filterable list of all scam reports.",
+  "frontend/src/pages/AuthPage.tsx": "Dedicated authentication page displaying login/logout controls, user profile information when authenticated, and Internet Identity explanation.",
+  "frontend/src/components/auth/ProfileSetupDialog.tsx": "Modal dialog that appears on first login to collect user's display name, preventing interaction until profile is created.",
+  "frontend/src/components/scam-reports/ScamReportForm.tsx": "Form component for submitting scam reports with fields for scam type, title, description, and optional loss amount, with validation and success feedback.",
+  "frontend/src/components/scam-reports/ScamReportList.tsx": "Displays paginated list of scam reports with type badges, dates, descriptions, and loss amounts, showing loading skeletons and empty states.",
+  "frontend/src/components/scam-reports/ScamTypeFilter.tsx": "Tab-based filter control allowing users to view all reports or filter by specific scam type.",
+  "frontend/src/components/resources/ResourcesSection.tsx": "Accordion component with guidance on evidence collection, safe bank contact methods, and finding official cybercrime reporting channels without country-specific details.",
+  "frontend/src/hooks/useUserProfile.ts": "React Query hooks for fetching and saving user profiles with proper loading state handling to prevent profile setup modal flash.",
+  "frontend/src/hooks/useScamReports.ts": "React Query hooks for fetching all reports, filtering by type, and creating new reports with automatic cache invalidation.",
+  "frontend/src/utils/format.ts": "Utility functions for formatting backend timestamps into human-readable relative dates and formatting loss amounts as currency.",
+  "frontend/src/index.css": "Global styles with warm earthy OKLCH color palette (avoiding blue/purple), typography hierarchy, focus states, and smooth scrolling for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme with custom shadows, Inter font family, and maintaining shadcn/ui color token system."
+}

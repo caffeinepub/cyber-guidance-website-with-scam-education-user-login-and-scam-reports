@@ -1,0 +1,121 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-multi-page-cyber-guidance-website-with-the-following-user-facing-sections-1-home-page-explaining-the-site-purpose-2-scam-guidance-section-that-educates-users-about-common-cyber-scams-and-bank-transaction-fraud-3-what-to-do-how-to-help-guidance-section-with-clear-steps-for-victims-and-helpers-and-4-a-scam-reports-section-where-users-can-submit-and-view-scam-incidents-what-type-of-scam-happened",
+      "featureTitle": "Create a multi-page cyber guidance website with the following user-facing sections: (1) Home page explaining the site purpose, (2) Scam Guidance section that educates users about common cyber scams and bank-transaction fraud, (3) \"What to do / How to help\" guidance section with clear steps for victims and helpers, and (4) a Scam Reports section where users can submit and view scam incidents (what type of scam happened).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/navigation/TopNav.tsx",
+        "frontend/src/pages/HelpHowToHelpPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ScamGuidancePage.tsx",
+        "frontend/src/pages/ScamReportsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-user-authentication-ui-with-a-dedicated-login-register-page-and-logged-in-state-using-the-platform-supported-identity-mechanism-and-gate-scam-report-submission-so-only-signed-in-users-can-submit-new-reports",
+      "featureTitle": "Implement user authentication UI with a dedicated Login/Register page and logged-in state, using the platform-supported identity mechanism, and gate scam report submission so only signed-in users can submit new reports.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/components/navigation/TopNav.tsx",
+        "frontend/src/hooks/useUserProfile.ts",
+        "frontend/src/pages/AuthPage.tsx",
+        "frontend/src/pages/ScamReportsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-scam-reports-feature-where-signed-in-users-can-submit-a-scam-incident-including-scam-type-selected-from-predefined-categories-short-title-description-approximate-date-and-optional-loss-amount-and-all-users-can-browse-a-list-of-submitted-reports-with-basic-filtering-by-scam-type",
+      "featureTitle": "Create a Scam Reports feature where signed-in users can submit a scam incident including: scam type (selected from predefined categories), short title, description, approximate date, and optional loss amount; and all users can browse a list of submitted reports with basic filtering by scam type.",
+      "files": [
+        "frontend/src/components/scam-reports/ScamReportForm.tsx",
+        "frontend/src/components/scam-reports/ScamReportList.tsx",
+        "frontend/src/components/scam-reports/ScamTypeFilter.tsx",
+        "frontend/src/hooks/useScamReports.ts",
+        "frontend/src/pages/ScamReportsPage.tsx",
+        "frontend/src/utils/format.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-consistent-distinctive-visual-theme-suitable-for-a-student-cyber-guidance-project-avoid-default-unstyled-look-define-a-cohesive-color-palette-not-blue-purple-typography-hierarchy-spacing-and-components-cards-nav-forms-and-apply-it-across-all-pages",
+      "featureTitle": "Add a consistent, distinctive visual theme suitable for a student cyber guidance project (avoid default/unstyled look): define a cohesive color palette (not blue/purple), typography hierarchy, spacing, and components (cards, nav, forms) and apply it across all pages.",
+      "files": [
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/navigation/TopNav.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-resources-section-within-the-guidance-or-help-page-that-lists-general-purpose-items-users-can-use-to-get-help-what-evidence-to-collect-how-to-contact-their-bank-and-how-to-find-official-cybercrime-reporting-channels-for-their-region-without-hardcoding-country-specific-phone-numbers-unless-provided-by-the-user",
+      "featureTitle": "Add a Resources section (within the Guidance or Help page) that lists general-purpose items users can use to get help: what evidence to collect, how to contact their bank, and how to find official cybercrime reporting channels for their region (without hardcoding country-specific phone numbers unless provided by the user).",
+      "files": [
+        "frontend/src/components/resources/ResourcesSection.tsx",
+        "frontend/src/pages/HelpHowToHelpPage.tsx",
+        "frontend/src/pages/ScamGuidancePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

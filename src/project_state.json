@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Cyber guidance website to educate users about cyber scams/bank transaction fraud and provide help/reporting guidance, with user accounts and scam listing/reporting, built with HTML/CSS/JavaScript frontend and Python or Node.js backend.",
+  "architectural_notes": [
+    "Frontend: HTML, CSS, JavaScript.",
+    "Backend: Python or Node.js (final choice TBD).",
+    "Site includes authentication (login/register) and a scam reporting/listing feature backed by server storage."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal cyber safety emblem/logo with shield + circuit lines (cyber-logo.dim_512x512.png)\n- Wide hero illustration showing abstract secure banking + warning symbols in a warm non-blue palette (hero-cyber-guidance.dim_1600x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-multi-page-cyber-guidance-website-with-the-following-user-facing-sections-1-home-page-explaining-the-site-purpose-2-scam-guidance-section-that-educates-users-about-common-cyber-scams-and-bank-transaction-fraud-3-what-to-do-how-to-help-guidance-section-with-clear-steps-for-victims-and-helpers-and-4-a-scam-reports-section-where-users-can-submit-and-view-scam-incidents-what-type-of-scam-happened",
+      "title": "Create a multi-page cyber guidance website with the following user-facing sections: (1) Home page explaining the site purpose, (2) Scam Guidance section that educates users about common cyber scams and bank-transaction fraud, (3) \"What to do / How to help\" guidance section with clear steps for victims and helpers, and (4) a Scam Reports section where users can submit and view scam incidents (what type of scam happened).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-user-authentication-ui-with-a-dedicated-login-register-page-and-logged-in-state-using-the-platform-supported-identity-mechanism-and-gate-scam-report-submission-so-only-signed-in-users-can-submit-new-reports",
+      "title": "Implement user authentication UI with a dedicated Login/Register page and logged-in state, using the platform-supported identity mechanism, and gate scam report submission so only signed-in users can submit new reports.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-scam-reports-feature-where-signed-in-users-can-submit-a-scam-incident-including-scam-type-selected-from-predefined-categories-short-title-description-approximate-date-and-optional-loss-amount-and-all-users-can-browse-a-list-of-submitted-reports-with-basic-filtering-by-scam-type",
+      "title": "Create a Scam Reports feature where signed-in users can submit a scam incident including: scam type (selected from predefined categories), short title, description, approximate date, and optional loss amount; and all users can browse a list of submitted reports with basic filtering by scam type.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-consistent-distinctive-visual-theme-suitable-for-a-student-cyber-guidance-project-avoid-default-unstyled-look-define-a-cohesive-color-palette-not-blue-purple-typography-hierarchy-spacing-and-components-cards-nav-forms-and-apply-it-across-all-pages",
+      "title": "Add a consistent, distinctive visual theme suitable for a student cyber guidance project (avoid default/unstyled look): define a cohesive color palette (not blue/purple), typography hierarchy, spacing, and components (cards, nav, forms) and apply it across all pages.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-resources-section-within-the-guidance-or-help-page-that-lists-general-purpose-items-users-can-use-to-get-help-what-evidence-to-collect-how-to-contact-their-bank-and-how-to-find-official-cybercrime-reporting-channels-for-their-region-without-hardcoding-country-specific-phone-numbers-unless-provided-by-the-user",
+      "title": "Add a Resources section (within the Guidance or Help page) that lists general-purpose items users can use to get help: what evidence to collect, how to contact their bank, and how to find official cybercrime reporting channels for their region (without hardcoding country-specific phone numbers unless provided by the user).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create core site pages: Home, Login/Register, and Scam List/Report page (select/type scam experienced)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Provide cyber scam guidance content: scam types, bank transaction safety tips, and what to do if victimized",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add “how to help people/report cyber crime” guidance section (steps, resources, contacts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement backend (Python or Node.js) to support authentication and storing/retrieving scam reports/list entries",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Implement backend storage and retrieval for scam reports, including associating each report with the submitting user identity and a server-side timestamp; provide APIs for creating a report and listing reports (with optional scam-type filter).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Cyber Guidance Website with Scam Education, User Login, and Scam Reports",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

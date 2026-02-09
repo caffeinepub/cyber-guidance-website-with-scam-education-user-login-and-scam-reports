@@ -1,0 +1,95 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T02:12:03.275Z",
+  "summary": "Core pages, navigation, theming, Internet Identity login UI, and a Scam Reports list+filter+submission flow are implemented. However, the scam report data model/UI do not include the required user-provided approximate date field, and the predefined scam categories required for Guidance/Reports do not align between frontend and backend (missing OTP/UPI, fake customer care, card skimming, job/loan, social media impersonation categories in the backend ScamType/filters). Additional unrequested features were added (user profiles and access-control initialization via secret token).",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Scam report submission must include an approximate date field (user-provided) in addition to scam type, title, description, and optional loss amount.",
+      "reason": "The submission form only includes scam type, title, description, and loss amount; there is no input for an approximate date, and the mutation does not send such a field.",
+      "evidence": [
+        "frontend/src/components/scam-reports/ScamReportForm.tsx",
+        "frontend/src/hooks/useScamReports.ts"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Backend APIs and stored report fields must include the submitted approximate date (in addition to server-side timestamp) and accept it on create.",
+      "reason": "Backend type ScamReport contains only `dateReported = Time.now()` (server timestamp) and `createScamReport` does not accept any approximate date parameter; therefore the user-submitted approximate date cannot be stored or returned.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Scam Guidance must include at least: phishing, OTP/UPI fraud, fake customer care, card skimming, investment/crypto scams, job/loan scams, and social media impersonation (as guidance topics).",
+      "reason": "While the guidance page shows some of these topics (e.g., phishing, OTP/UPI fraud, fake customer care, card skimming, investment), the file is truncated and does not provide evidence that job/loan scams and social media impersonation are included.",
+      "evidence": [
+        "frontend/src/pages/ScamGuidancePage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Scam type must be selected from predefined categories that cover the required scam types, and filtering by scam type should support those categories.",
+      "reason": "Backend `ScamType` enum and frontend report form/filter options do not include OTP/UPI fraud, fake customer care, card skimming, job/loan scams, or social media impersonation categories; instead they include types like ransomware/romance/shopping. This indicates the predefined categories used for reporting/filtering are not aligned with the required scam types.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/scam-reports/ScamReportForm.tsx",
+        "frontend/src/components/scam-reports/ScamTypeFilter.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile management (name capture) with a mandatory profile setup dialog after login.",
+      "reason": "The BuildRequest only asked for Login/Register and gating report submission; it did not request user profiles or a profile setup workflow.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/pages/AuthPage.tsx",
+        "frontend/src/pages/ScamReportsPage.tsx",
+        "frontend/src/hooks/useUserProfile.ts"
+      ]
+    },
+    {
+      "description": "Access control system with permissions (#user) and admin initialization using a secret URL parameter token.",
+      "reason": "The BuildRequest did not request role-based access control, admin flows, or initializing backend authorization using a secret token from the URL.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/ProfileSetupDialog.tsx",
+    "frontend/src/components/layout/SiteLayout.tsx",
+    "frontend/src/components/navigation/TopNav.tsx",
+    "frontend/src/components/resources/ResourcesSection.tsx",
+    "frontend/src/components/scam-reports/ScamReportForm.tsx",
+    "frontend/src/components/scam-reports/ScamReportList.tsx",
+    "frontend/src/components/scam-reports/ScamTypeFilter.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useScamReports.ts",
+    "frontend/src/hooks/useUserProfile.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AuthPage.tsx",
+    "frontend/src/pages/HelpHowToHelpPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/ScamGuidancePage.tsx",
+    "frontend/src/pages/ScamReportsPage.tsx",
+    "frontend/src/utils/format.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
